@@ -1,0 +1,59 @@
+innerText
+
+Definition: Represents the "rendered" text content of a node and its descendants.
+
+Behavior:
+1.Only includes the text that is visible to the user, excluding hidden elements.
+2.Triggers a reflow and repaint of the document, which can be costly in terms of performance.
+3.Takes CSS styles (like display: none or visibility: hidden) into account.
+
+Example:
+
+<div id="example">Hello <span style="display:none;">World</span></div>
+<script>
+    var text = document.getElementById("example").innerText;
+    console.log(text); // Output: "Hello"
+</script>
+
+textContent
+Definition: Represents the text content of a node and its descendants.
+
+Behavior:
+
+1.Includes all text, even if it's hidden with CSS styles.
+2.Does not trigger reflow and repaint, making it more performant.
+3.Does not parse HTML tags; it simply returns or sets the text as is.
+Example:
+
+<div id="example">Hello <span style="display:none;">World</span></div>
+<script>
+    var text = document.getElementById("example").textContent;
+    console.log(text); // Output: "Hello World"
+</script>
+
+innerHTML
+
+Definition: Represents the HTML content of an element as a string.
+
+Behavior:
+
+1.Includes HTML tags and allows setting or getting the entire HTML structure within an element.
+2.Can be used to inject HTML, including elements and attributes.
+3.Using innerHTML can potentially open up security risks such as XSS (Cross-Site Scripting) if the content includes user-provided data.
+Example:
+
+<div id="example">Hello <span>World</span></div>
+<script>
+    var html = document.getElementById("example").innerHTML;
+    console.log(html); // Output: "Hello <span>World</span>"
+    
+    // Setting innerHTML
+    document.getElementById("example").innerHTML = "<p>New Content</p>";
+    // The div now contains a paragraph with "New Content"
+</script>
+
+
+Summary
+innerText: Reads or writes only the visible text of an element, taking CSS styles into account. Causes reflow and repaint.
+textContent: Reads or writes all text content of an element, including hidden text. Does not cause reflow and repaint.
+innerHTML: Reads or writes the HTML content of an element, including tags. Can include or insert HTML structure, but needs to be used carefully to avoid security issues.
